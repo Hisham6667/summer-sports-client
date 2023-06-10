@@ -38,7 +38,7 @@ const Login = () => {
         <div className="divider">or</div>
 
         <div>
-          <p className="text-center">new here? <Link className="text-amber-800" to="/register">Register</Link></p>
+          <p className="text-center">New here? <Link className="text-amber-800" to="/register">Register</Link></p>
         </div>
 
       </form>
