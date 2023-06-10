@@ -3,12 +3,21 @@ import Main from "../Layout/Main/Main";
 import Error from "../Layout/Error/Error";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
       {
         path: '/instructors',
         element: <Instructors></Instructors>

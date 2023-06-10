@@ -39,8 +39,8 @@ const Navbar = () => {
             <button className="btn btn-error btn-outline btn-sm">Logout</button>
           </div>
           :
-          <Link to='/'>
-            <button className="btn btn-accent btn-outline btn-sm">Login</button>
+          <Link to='/login'>
+            <button className="btn btn-accent btn-outline btn-sm hover:shadow-lg transition-all">Login</button>
           </Link>
         }
 
