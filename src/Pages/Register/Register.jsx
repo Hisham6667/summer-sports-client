@@ -1,12 +1,62 @@
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Register = () => {
-  // TODO: register form using firebase
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [error, setError] = useState('');
+  // const navigate = useNavigate();
+
+  const onRegister = data => {
+    // validations
+    if (data.password !== data.confirmPassword) {
+      setError('Your password & confirm password have to be same');
+      return Swal.fire({
+        icon: 'error',
+        title: (error),
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+    else if (data.password.length < 6 || data.password.length > 20) {
+      setError('Password have to be between 6 to 20 characters');
+      return Swal.fire({
+        icon: 'error',
+        title: (error),
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+    else if (!/(?=.*[!@#$&*])/.test(data.password)) {
+      setError('Type at least 1 special character');
+      return Swal.fire({
+        icon: 'error',
+        title: (error),
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+    else if (!/(?=.*[A-Z])/.test(data.password)) {
+      setError('Password have to be 1 uppercase letter');
+      return Swal.fire({
+        icon: 'error',
+        title: (error),
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+
+    console.log(data, 'clicked');
+
+
+  };
   return (
     <div className="w-full bg-amber-950/10 min-h-[600px] flex justify-center items-center p-20">
 
-      <form className="w-full max-w-md min-h-[400px] bg-white rounded-none p-10 flex flex-col">
+      <form onSubmit={handleSubmit(onRegister)} className="w-full max-w-md min-h-[400px] bg-white rounded-none p-10 flex flex-col">
 
         <div className="mb-5">
           <p className="text-amber-900 text-3xl font-semibold text-center uppercase">lets start a journey with us!</p>
@@ -16,35 +66,35 @@ const Register = () => {
           <label className="label">
             <span className="label-text text-lg">Name</span>
           </label>
-          <input type="name" placeholder="name" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required/>
+          <input type="name" {...register("name", { required: true })} placeholder="name" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
+        </div>
+
+        <div className="form-control mb-3">
+          <label className="label">
+            <span className="label-text text-lg">Picture url</span>
+          </label>
+          <input type="url" {...register("url", { required: true })} placeholder="https://example.example/......." className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
         <div className="form-control mb-3">
           <label className="label">
             <span className="label-text text-lg">Email</span>
           </label>
-          <input type="email" placeholder="example@example.com" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required/>
+          <input type="email" {...register("email", { required: true })} placeholder="example@example.com" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
         <div className="form-control mb-3">
           <label className="label">
             <span className="label-text text-lg">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required/>
-        </div>
-
-        <div className="form-control mb-3">
-          <label className="label">
-            <span className="label-text text-lg">Confirm Password</span>
-          </label>
-          <input type="password" placeholder="Confirm password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required/>
+          <input type="password" {...register("password", { required: true })} placeholder="password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
         <div className="form-control mb-10">
           <label className="label">
-            <span className="label-text text-lg">Picture url</span>
+            <span className="label-text text-lg">Confirm Password</span>
           </label>
-          <input type="url" placeholder="https://example.example/......." className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required/>
+          <input type="password" {...register("confirmPassword", { required: true })} placeholder="Confirm password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
         <div className="form-control">
