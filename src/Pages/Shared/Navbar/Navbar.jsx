@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
+import ActiveLink from './ActiveLink';
 
 const Navbar = () => {
   // TODO: update user from firebase
   const user = false;
+  // TODO: add spinner to loading page
+  // <span className="loading loading-spinner text-accent w-10"></span>
 
   return (
     <div className="navbar flex justify-between items-center my-2">
@@ -16,12 +19,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* update links to a valid route */}
+      {/* TODO: update links to a valid route */}
       <div className="navbar-center">
         <ul className="menu menu-horizontal px-1 text-xl">
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/instructors'>Instructors</Link></li>
-          <li><Link to='/classes'>Classes</Link></li>
+          <li><ActiveLink to='/'>Home</ActiveLink></li>
+          <li><ActiveLink to='/instructors'>Instructors</ActiveLink></li>
+          <li><ActiveLink to='/classes'>Classes</ActiveLink></li>
         </ul>
       </div>
 
