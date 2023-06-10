@@ -20,8 +20,8 @@ const Navbar = () => {
       <div className="navbar-center">
         <ul className="menu menu-horizontal px-1 text-xl">
           <li><Link to='/'>Home</Link></li>
-          <li><Link to='/'>Instructors</Link></li>
-          <li><Link to='/'>Classes</Link></li>
+          <li><Link to='/instructors'>Instructors</Link></li>
+          <li><Link to='/classes'>Classes</Link></li>
         </ul>
       </div>
 
