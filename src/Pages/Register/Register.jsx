@@ -104,6 +104,12 @@ const Register = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        Swal.fire({
+          icon: 'success',
+          title: 'Once again chief Welcome!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
       .catch(error => {
         setError(error.message)
