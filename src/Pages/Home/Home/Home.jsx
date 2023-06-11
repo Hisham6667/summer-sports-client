@@ -1,4 +1,5 @@
 import Banner from '../Banner/Banner';
+import CompoInstructors from '../CompoInstructors/CompoInstructors';
 import Cover from '../Cover/Cover';
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Cover></Cover>
       <Banner></Banner>
+      <CompoInstructors></CompoInstructors>
     </div>
   );
 };
