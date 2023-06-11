@@ -2,31 +2,31 @@
   {
     "name":"Phil Jackson",
     "email":"football@coach.com",
-    "photoUrl": "https://i.ibb.co/gD6ZHRb/football-coach.webp"
+    "photoURL": "https://i.ibb.co/gD6ZHRb/football-coach.webp"
   },
   {
     "name":"Alex Ferguson",
     "email":"basketball@coach.com",
-    "photoUrl": "https://i.ibb.co/QM897Wv/basketball-coach.webp"
+    "photoURL": "https://i.ibb.co/QM897Wv/basketball-coach.webp"
   },
   {
     "name":"Bill Belichick",
     "email":"cricket@coach.com",
-    "photoUrl": "https://i.ibb.co/VQKdqQF/cricket-coach.jpg"
+    "photoURL": "https://i.ibb.co/VQKdqQF/cricket-coach.jpg"
   },
   {
     "name":"Jose Mourinho",
     "email":"swim@coach.com",
-    "photoUrl": "https://i.ibb.co/ft9SHQz/swim-coach.jpg"
+    "photoURL": "https://i.ibb.co/ft9SHQz/swim-coach.jpg"
   },
   {
     "name":"Gregg Popovich",
     "email":"volleyball@coach.com",
-    "photoUrl": "https://i.ibb.co/H7w0mHS/volleyball-coach.webp"
+    "photoURL": "https://i.ibb.co/H7w0mHS/volleyball-coach.webp"
   },
   {
     "name":"Nick Saban",
     "email":"badminton@coach.com",
-    "photoUrl": "https://i.ibb.co/VxnvmmQ/badminton-coach.webp"
+    "photoURL": "https://i.ibb.co/VxnvmmQ/badminton-coach.webp"
   }
 ]
