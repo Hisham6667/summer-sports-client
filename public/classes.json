@@ -1,0 +1,50 @@
+[
+  {
+    "image": "",
+    "name": "football class",
+    "instructor_name": "Phil Jackson",
+    "email": "football@coach.com",
+    "available_seats": 30,
+    "price": 43
+  },
+  {
+    "image": "",
+    "name": "basketball class",
+    "instructor_name": "Alex Ferguson",
+    "email": "basketball@coach.com",
+    "available_seats": 30,
+    "price": 43
+  },
+  {
+    "image": "",
+    "name": "cricket class",
+    "instructor_name": "Bill Belichick",
+    "email": "cricket@coach.com",
+    "available_seats": 30,
+    "price": 43
+  },
+  {
+    "image": "",
+    "name": "swim class",
+    "instructor_name": "Jose Mourinho",
+    "email": "swim@coach.com",
+    "available_seats": 30,
+    "price": 43
+  },
+  {
+    "image": "",
+    "name": "volleyball class",
+    "instructor_name": "Gregg Popovich",
+    "email": "volleyball@coach.com",
+    "available_seats": 30,
+    "price": 43
+  },
+  {
+    "image": "",
+    "name": "badminton class",
+    "instructor_name": "Nick Saban",
+    "email": "badminton@coach.com",
+    "available_seats": 30,
+    "price": 43
+  }
+]

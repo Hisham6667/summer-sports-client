@@ -5,9 +5,6 @@ import { Fade, JackInTheBox } from "react-awesome-reveal";
 
 const Home = () => {
 
-
-
-
   return (
     <div>
       <JackInTheBox>
