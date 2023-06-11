@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [error, setError] = useState('');
   // const navigate = useNavigate();
+  const { registerUser, updateUserProfile, googleSignIn } = useAuth()
 
   const onRegister = data => {
+    setError('')
     // validations
     if (data.password !== data.confirmPassword) {
       setError('Your password & confirm password have to be same');
@@ -48,11 +51,61 @@ const Register = () => {
         timer: 2000
       })
     }
+    console.log(data);
 
-    console.log(data, 'clicked');
-
-
+    registerUser(data.email, data.password)
+      .then(result => {
+        setError('')
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUserProfile(data.name, data.url)
+          .then(() => {
+            reset();
+            Swal.fire({
+              icon: 'success',
+              title: 'Your journey started successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+          .catch(error => {
+            setError(error.message)
+            Swal.fire({
+              icon: 'error',
+              title: (error.message),
+              showConfirmButton: false,
+              timer: 2000
+            })
+          })
+      })
+      .catch(error => {
+        setError(error.message)
+        Swal.fire({
+          icon: 'error',
+          title: (error.message),
+          showConfirmButton: false,
+          timer: 2000
+        })
+      })
   };
+
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch(error => {
+        setError(error.message)
+        Swal.fire({
+          icon: 'error',
+          title: (error.message),
+          showConfirmButton: false,
+          timer: 2000
+        })
+      })
+  };
+
   return (
     <div className="w-full bg-amber-950/10 min-h-[600px] flex justify-center items-center p-20">
 
@@ -90,21 +143,23 @@ const Register = () => {
           <input type="password" {...register("password", { required: true })} placeholder="password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
-        <div className="form-control mb-10">
+        <div className="form-control mb-8">
           <label className="label">
             <span className="label-text text-lg">Confirm Password</span>
           </label>
           <input type="password" {...register("confirmPassword", { required: true })} placeholder="Confirm password" className="input input-bordered bg-amber-950/10 placeholder:focus:text-black" required />
         </div>
 
+        <p className='mb-2 text-sm text-red-500 text-center'>{error}</p>
+
         <div className="form-control">
-          <button className="btn bg-white border-amber-900 text-amber-900 hover:bg-amber-900 hover:text-white">Register</button>
+          <button type='submit' className="btn bg-white border-amber-900 text-amber-900 hover:bg-amber-900 hover:text-white">Register</button>
         </div>
 
         <div className="divider">or</div>
 
         <div className="form-control">
-          <button className="btn bg-white border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white"><FcGoogle className="text-xl" />register with google</button>
+          <button onClick={handleGoogleLogin} className="btn bg-white border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white"><FcGoogle className="text-xl" />register with google</button>
         </div>
 
         <div className="divider">or</div>

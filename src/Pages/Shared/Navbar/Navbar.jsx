@@ -1,12 +1,33 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import ActiveLink from './ActiveLink';
+import useAuth from '../../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  // TODO: update user from firebase
-  const user = false;
+  const {loading, user, exitUser} = useAuth()
   // TODO: add spinner to loading page
   // <span className="loading loading-spinner text-accent w-10"></span>
+
+  const handleExitUser = () => {
+    exitUser()
+    .then(()=> {
+      Swal.fire({
+        icon: 'success',
+        title: 'See you chief!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err)=> {
+      Swal.fire({
+        icon: 'error',
+        title: (err.message),
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+  }
 
   return (
     <div className="navbar flex justify-between items-center my-2">
@@ -36,7 +57,7 @@ const Navbar = () => {
             <Link to='/'>
               <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
             </Link>
-            <button className="btn btn-error btn-outline btn-sm">Logout</button>
+            <button onClick={handleExitUser} className="btn btn-error btn-outline btn-sm">Logout</button>
           </div>
           :
           <Link to='/login'>
