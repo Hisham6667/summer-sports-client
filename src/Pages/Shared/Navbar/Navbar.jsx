@@ -5,26 +5,26 @@ import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  const {user, exitUser} = useAuth();
+  const { user, exitUser } = useAuth();
 
   const handleExitUser = () => {
     exitUser()
-    .then(()=> {
-      Swal.fire({
-        icon: 'success',
-        title: 'See you chief!',
-        showConfirmButton: false,
-        timer: 1500
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'See you chief!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-    })
-    .catch((err)=> {
-      Swal.fire({
-        icon: 'error',
-        title: (err.message),
-        showConfirmButton: false,
-        timer: 1500
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: (err.message),
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-    })
   }
 
   return (
@@ -51,7 +51,9 @@ const Navbar = () => {
         {user
           ?
           <div className='flex items-center justify-center'>
-            <img className='h-16 w-16 bg-teal-700 rounded-full' src={logo} alt="" />
+            <div className='tooltip tooltip-accent tooltip-left' data-tip={user ? (user.displayName ? user.displayName : user.email) : 'no user'} >
+              <img className='h-16 w-16 border-dashed border p-1 border-amber-800 rounded-full' src={user ? user.photoURL : logo} alt="" />
+            </div>
             <Link to='/'>
               <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
             </Link>
