@@ -1,6 +1,7 @@
 import React from 'react';
 
-const InstructorCard = () => {
+const InstructorCard = ({instructor}) => {
+  console.log(instructor);
   return (
     <div>
       
