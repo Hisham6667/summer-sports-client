@@ -3,6 +3,7 @@ import logo from '../../../assets/logo.png'
 import ActiveLink from './ActiveLink';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Bounce } from "react-awesome-reveal";
 
 const Navbar = () => {
   const { user, exitUser } = useAuth();
@@ -51,9 +52,11 @@ const Navbar = () => {
         {user
           ?
           <div className='flex items-center justify-center'>
-            <div className='tooltip tooltip-accent tooltip-left' data-tip={user ? (user.displayName ? user.displayName : user.email) : 'no user'} >
-              <img className='h-16 w-16 border-dashed border p-1 border-amber-800 rounded-full' src={user ? user.photoURL : logo} alt="" />
-            </div>
+            <Bounce>
+              <div className='tooltip tooltip-accent tooltip-left' data-tip={user ? (user.displayName ? user.displayName : user.email) : 'no user'} >
+                <img className='h-16 w-16 border-dashed border p-1 border-amber-800 rounded-full' src={user ? user.photoURL : logo} alt="" />
+              </div>
+            </Bounce>
             <Link to='/'>
               <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
             </Link>

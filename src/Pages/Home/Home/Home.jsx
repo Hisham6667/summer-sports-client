@@ -1,13 +1,22 @@
 import Banner from '../Banner/Banner';
 import CompoInstructors from '../CompoInstructors/CompoInstructors';
 import Cover from '../Cover/Cover';
+import { Fade, JackInTheBox } from "react-awesome-reveal";
 
 const Home = () => {
+
+
+
+
   return (
     <div>
-      <Cover></Cover>
+      <JackInTheBox>
+        <Cover></Cover>
+      </JackInTheBox>
       <Banner></Banner>
-      <CompoInstructors></CompoInstructors>
+      <Fade>
+        <CompoInstructors></CompoInstructors>
+      </Fade>
     </div>
   );
 };
