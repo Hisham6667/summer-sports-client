@@ -1,5 +1,5 @@
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import Swal from 'sweetalert2';
@@ -7,10 +7,17 @@ import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState('');
   // const navigate = useNavigate();
-  const { registerUser, updateUserProfile, googleSignIn } = useAuth()
+  const { registerUser,
+    updateUserProfile,
+    googleSignIn,
+    user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
 
   const onRegister = data => {
     setError('')
@@ -51,16 +58,19 @@ const Register = () => {
         timer: 2000
       })
     }
+    // TODO: remove log
     console.log(data);
 
     registerUser(data.email, data.password)
       .then(result => {
         setError('')
         const loggedUser = result.user;
+        // TODO: remove loggedUser
         console.log(loggedUser);
         updateUserProfile(data.name, data.url)
           .then(() => {
             reset();
+            navigate(from, { replace: true })
             Swal.fire({
               icon: 'success',
               title: 'Your journey started successfully',
@@ -79,7 +89,7 @@ const Register = () => {
           })
       })
       .catch(error => {
-        setError(error.message)
+        setError(error.message);
         Swal.fire({
           icon: 'error',
           title: (error.message),
@@ -153,13 +163,13 @@ const Register = () => {
         <p className='mb-2 text-sm text-red-500 text-center'>{error}</p>
 
         <div className="form-control">
-          <button type='submit' className="btn bg-white border-amber-900 text-amber-900 hover:bg-amber-900 hover:text-white">Register</button>
+          <button disabled={user ? true : false} type='submit' className="btn bg-white border-amber-900 text-amber-900 hover:bg-amber-900 hover:text-white">Register</button>
         </div>
 
         <div className="divider">or</div>
 
         <div className="form-control">
-          <button onClick={handleGoogleLogin} className="btn bg-white border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white"><FcGoogle className="text-xl" />register with google</button>
+          <button disabled={user ? true : false} onClick={handleGoogleLogin} className="btn bg-white border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white"><FcGoogle className="text-xl" />register with google</button>
         </div>
 
         <div className="divider">or</div>

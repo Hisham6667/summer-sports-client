@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
-  // TODO: login with email and pass complete
+  // TODO: login with email and pass
   return (
     <div className="w-full bg-amber-950/10 min-h-[600px] flex justify-center items-center p-20">
 

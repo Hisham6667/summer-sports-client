@@ -5,9 +5,7 @@ import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  const {loading, user, exitUser} = useAuth()
-  // TODO: add spinner to loading page
-  // <span className="loading loading-spinner text-accent w-10"></span>
+  const {user, exitUser} = useAuth();
 
   const handleExitUser = () => {
     exitUser()
