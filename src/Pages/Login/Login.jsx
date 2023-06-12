@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const Login = () => {
@@ -44,14 +45,17 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then(() => {
-        navigate(from, { replace: true })
+      .then(result => {
+        const data = result.user;
         Swal.fire({
           icon: 'success',
-          title: 'Once again chief Welcome!',
+          title: 'Welcome! Once again chief',
           showConfirmButton: false,
           timer: 1500
         })
+        navigate(from, { replace: true })
+        axios.post('http://localhost:5000/users', { name: data.displayName, email: data.email })
+          .then(() => { })
       })
       .catch(error => {
         setError(error.message)

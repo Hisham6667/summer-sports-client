@@ -1,16 +1,14 @@
-import React from 'react';
 import usePayments from '../../../Hooks/usePayments';
 
 const PaymentHistory = () => {
 
-  const [payments] = usePayments()
-  console.log(payments);
+  const [payments] = usePayments();
 
   return (
     <div className="overflow-x-auto ">
       <div className="p-8 rounded-xl border-y mt-10 mb-7  border-amber-800 flex justify-around">
         {payments.length !== 0 ? <><p className="text-4xl font-bold text-center font-serif uppercase">You successfully purchased {payments.length} times</p>
-        </> : <><p className="text-4xl font-bold text-center font-serif uppercase">no classes Added</p></>}
+        </> : <><p className="text-4xl font-bold text-center font-serif uppercase">no classes purchased</p></>}
       </div>
 
       {payments.length !== 0 &&
@@ -19,7 +17,7 @@ const PaymentHistory = () => {
           <thead>
             <tr className="text-2xl">
               <th>Date</th>
-              <th>class Names</th>
+              <th>Class Names</th>
               <th>Price</th>
             </tr>
           </thead>

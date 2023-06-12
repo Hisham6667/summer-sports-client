@@ -4,10 +4,12 @@ import ActiveLink from './ActiveLink';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Bounce } from "react-awesome-reveal";
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Navbar = () => {
   const { user, exitUser } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  // const [isAdmin] = useAdmin();
 
   const handleExitUser = () => {
     exitUser()
@@ -55,12 +57,18 @@ const Navbar = () => {
           <div className='flex items-center justify-center'>
             <Bounce>
               <div className='tooltip tooltip-accent tooltip-left' data-tip={user ? (user.displayName ? user.displayName : user.email) : 'no user'} >
-                <img className='h-16 w-16 border-dashed border p-1 border-amber-800 rounded-full' src={user ? user.photoURL : logo} alt="" />
+                <img className='h-16 w-16 border-dashed border p-1 border-amber-800 rounded-full' src={user.photoURL ? user.photoURL : logo} alt="" />
               </div>
             </Bounce>
-            <Link to='/dashboard/selectedclasses'>
-              <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
-            </Link>
+
+            {user.role === 'admin' ?
+              <Link to='/dashboard/allusers'>
+                <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
+              </Link>
+              :
+              <Link to='/dashboard/selectedclasses'>
+                <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
+              </Link>}
             <button onClick={handleExitUser} className="btn btn-error btn-outline btn-sm">Logout</button>
           </div>
           :

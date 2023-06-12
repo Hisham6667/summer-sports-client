@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
 
 const Register = () => {
 
@@ -69,14 +70,19 @@ const Register = () => {
         console.log(loggedUser);
         updateUserProfile(data.name, data.url)
           .then(() => {
-            reset();
-            navigate(from, { replace: true })
-            Swal.fire({
-              icon: 'success',
-              title: 'Your journey started successfully',
-              showConfirmButton: false,
-              timer: 1500
-            })
+            axios.post('http://localhost:5000/users', { name: data.name, email: data.email })
+              .then(data => {
+                if (data.data.insertedId) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Your journey started successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  reset();
+                  navigate(from, { replace: true })
+                }
+              })
           })
           .catch(error => {
             setError(error.message)
@@ -101,14 +107,17 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then(() => {
-        navigate(from, { replace: true })
+      .then(result => {
+        const data = result.user;
         Swal.fire({
           icon: 'success',
-          title: 'Once again chief Welcome!',
+          title: 'Welcome! Once again chief',
           showConfirmButton: false,
           timer: 1500
         })
+        navigate(from, { replace: true })
+        axios.post('http://localhost:5000/users', { name: data.displayName, email: data.email })
+          .then(() => { })
       })
       .catch(error => {
         setError(error.message)
