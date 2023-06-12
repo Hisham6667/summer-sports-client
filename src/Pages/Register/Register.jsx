@@ -59,18 +59,13 @@ const Register = () => {
         timer: 2000
       })
     }
-    // TODO: remove log
-    console.log(data);
 
     registerUser(data.email, data.password)
-      .then(result => {
+      .then(() => {
         setError('')
-        const loggedUser = result.user;
-        // TODO: remove loggedUser
-        console.log(loggedUser);
         updateUserProfile(data.name, data.url)
           .then(() => {
-            axios.post('http://localhost:5000/users', { name: data.name, email: data.email })
+            axios.post('https://summer-sports-server.vercel.app/users', { name: data.name, email: data.email })
               .then(data => {
                 if (data.data.insertedId) {
                   Swal.fire({
@@ -116,7 +111,7 @@ const Register = () => {
           timer: 1500
         })
         navigate(from, { replace: true })
-        axios.post('http://localhost:5000/users', { name: data.displayName, email: data.email })
+        axios.post('https://summer-sports-server.vercel.app/users', { name: data.displayName, email: data.email })
           .then(() => { })
       })
       .catch(error => {

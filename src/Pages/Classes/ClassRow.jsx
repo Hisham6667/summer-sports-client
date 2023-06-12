@@ -29,7 +29,7 @@ const ClassRow = ({ singleclass }) => {
         })
     }
 
-    axios.post('http://localhost:5000/selectedclasses', { class_id: _id, image, name, price, email: user.email })
+    axios.post('https://summer-sports-server.vercel.app/selectedclasses', { class_id: _id, image, name, price, email: user.email })
       .then(data => {
         console.log(data.data);
         if (data.data.insertedId) {

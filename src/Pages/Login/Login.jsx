@@ -54,7 +54,7 @@ const Login = () => {
           timer: 1500
         })
         navigate(from, { replace: true })
-        axios.post('http://localhost:5000/users', { name: data.displayName, email: data.email })
+        axios.post('https://summer-sports-server.vercel.app/users', { name: data.displayName, email: data.email })
           .then(() => { })
       })
       .catch(error => {
