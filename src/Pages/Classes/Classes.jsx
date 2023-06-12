@@ -28,7 +28,7 @@ const Classes = () => {
 
         <tbody>
           {
-            allClasses.map(singleclass => <ClassRow key={singleclass.name} singleclass={singleclass}></ClassRow>)
+            allClasses.map(singleclass => <ClassRow key={singleclass._id} singleclass={singleclass}></ClassRow>)
           }
         </tbody>
 

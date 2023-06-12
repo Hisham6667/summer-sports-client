@@ -2,12 +2,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import banner1 from '../../../assets/banner/kids-football.jpg'
-import banner2 from '../../../assets/banner/kids-basketball.jpg'
-import banner3 from '../../../assets/banner/kids-cricket.jpg'
-import banner4 from '../../../assets/banner/kids-swim.jpg'
-import banner5 from '../../../assets/banner/kids-volleyball.jpg'
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -36,7 +30,7 @@ const Banner = () => {
       >
 
         <SwiperSlide>
-          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(${banner1})` }}>
+          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(https://i.ibb.co/9N4mQNy/kids-football.jpg)` }}>
             <div className="hero-overlay bg-opacity-30"></div>
             <div className="hero-content w-5/6 mx-auto flex-col text-white">
               <p className="text-5xl uppercase font-semibold mb-5">football for kids</p>
@@ -45,7 +39,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(${banner2})` }}>
+          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(https://i.ibb.co/02bJw3B/kids-basketball.jpg)` }}>
             <div className="hero-overlay bg-opacity-30"></div>
             <div className="hero-content w-5/6 mx-auto flex-col text-white">
               <p className="text-5xl uppercase font-semibold mb-5">basketball for kids</p>
@@ -54,7 +48,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(${banner3})` }}>
+          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(https://i.ibb.co/crVsyjh/kids-cricket.jpg)` }}>
             <div className="hero-overlay bg-opacity-30"></div>
             <div className="hero-content w-5/6 mx-auto flex-col text-white">
               <p className="text-5xl uppercase font-semibold mb-5">cricket for kids</p>
@@ -63,7 +57,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(${banner4})` }}>
+          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(https://i.ibb.co/yhktrWP/kids-swim.jpg)` }}>
             <div className="hero-overlay bg-opacity-30"></div>
             <div className="hero-content w-5/6 mx-auto flex-col text-white">
               <p className="text-5xl uppercase font-semibold mb-5">swim for kids</p>
@@ -72,7 +66,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(${banner5})` }}>
+          <div className="hero w-full h-[500px]" style={{ backgroundImage: `url(https://i.ibb.co/kyBDCy3/kids-volleyball.jpg)` }}>
             <div className="hero-overlay bg-opacity-30"></div>
             <div className="hero-content w-5/6 mx-auto flex-col text-white">
               <p className="text-5xl uppercase font-semibold mb-5">volleyball for kids</p>

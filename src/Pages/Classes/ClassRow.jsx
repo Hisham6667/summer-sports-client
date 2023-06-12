@@ -1,10 +1,11 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const ClassRow = ({ singleclass }) => {
-  const { image, name, instructor_name, available_seats, price } = singleclass;
+  const { _id, image, name, instructor_name, available_seats, price } = singleclass;
   const { user } = useAuth();
   const navigate = useNavigate()
 
@@ -21,20 +22,34 @@ const ClassRow = ({ singleclass }) => {
       })
         .then((result) => {
           if (result.isConfirmed) {
-            navigate('/login')
+            return navigate('/login')
           }
         })
     }
+
+    axios.post('http://localhost:5000/selectedclasses', { class_id: _id, image, name, price, email: user.email })
+      .then(data => {
+        console.log(data.data);
+        if (data.data.insertedId) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Your class added successfully',
+            showConfirmButton: false,
+            timer: 800
+          })
+        }
+      })
+
   }
 
   return (
     <tr className="text-xl">
       <td>
-        <img src={image} alt="classes picture" />
+        <img className="avatar w-14 h-14 mask mask-squircle" src={image} alt="classes picture" />
       </td>
       <td>{name}</td>
       <td>{instructor_name}</td>
-      <td className={available_seats===0 ? 'text-red-500' : ''}>{available_seats} seats available</td>
+      <td className={available_seats === 0 ? 'text-red-500' : ''}>{available_seats} seats available</td>
       <td>${price}</td>
       <td>
         <button onClick={handleSelect} disabled={available_seats === 0} className="btn btn-outline btn-accent">Select</button>
