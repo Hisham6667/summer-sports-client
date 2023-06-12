@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOut = ({ selectedClasses, price }) => {
 
@@ -11,13 +12,13 @@ const CheckOut = ({ selectedClasses, price }) => {
   const { user } = useAuth()
   const [axiosSecure] = useAxiosSecure();
   const [clientSecret, setClientSecret] = useState('');
-  const [processing, setProcessing] = useState(false)
+  const [processing, setProcessing] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (price) {
       axiosSecure.post('/create-payment-intent', { price })
         .then(res => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         })
     }
@@ -41,16 +42,10 @@ const CheckOut = ({ selectedClasses, price }) => {
     });
 
     if (error) {
-      console.log(error);
-      Swal.fire({
-        icon: 'error',
-        title: (error.message),
-        showConfirmButton: false,
-        timer: 2000
-      })
+      // console.log(error);
     }
     else {
-      console.log('paymentMethod', paymentMethod);
+      // console.log('paymentMethod', paymentMethod);
     }
 
     setProcessing(true)
@@ -66,13 +61,42 @@ const CheckOut = ({ selectedClasses, price }) => {
     })
     if (confirmError) {
       console.log(confirmError);
+      Swal.fire({
+        icon: 'error',
+        title: (confirmError),
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
-    console.log("payment intent", paymentIntent);
+    // console.log("payment intent", paymentIntent);
+
     setProcessing(false)
 
-
-
-
+    if (paymentIntent.status === 'succeeded') {
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        class_access: selectedClasses.length,
+        selected_class_id: selectedClasses.map(selectedClass => selectedClass._id),
+        class_id: selectedClasses.map(selectedClass => selectedClass.class_id),
+        name: selectedClasses.map(selectedClass => selectedClass.name),
+        date: new Date(),
+        status: 'pending'
+      }
+      axiosSecure.post('/payments', payment)
+        .then(res => {
+          if (res.data.insertResult.insertedId) {
+            navigate('/dashboard/paymenthistory')
+            Swal.fire({
+              icon: 'success',
+              title: "payment successful",
+              showConfirmButton: false,
+              timer: 1000
+            })
+          }
+        })
+    }
   }
 
   return (
