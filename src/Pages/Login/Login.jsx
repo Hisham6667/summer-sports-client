@@ -45,6 +45,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleSignIn()
       .then(() => {
+        navigate(from, { replace: true })
         Swal.fire({
           icon: 'success',
           title: 'Once again chief Welcome!',

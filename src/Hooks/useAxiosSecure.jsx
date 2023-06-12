@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
@@ -11,10 +11,10 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.interceptors.request.use((config) => {
+    axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');
       if (token) {
-        config.headers.Authorization = `bearer ${token}`
+        config.headers.authorization = `bearer ${token}`
       }
       return config;
     });
