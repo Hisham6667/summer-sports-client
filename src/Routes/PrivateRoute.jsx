@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 const PrivateRoute = ({ children }) => {
 
   const { user, loading } = useAuth();
-  const location = useLocation()
+  const location = useLocation();
 
   if (loading) {
     return <div className="w-full flex justify-center items-center h-[550px]">

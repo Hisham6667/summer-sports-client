@@ -9,7 +9,7 @@ import useAdmin from '../../../Hooks/useAdmin';
 const Navbar = () => {
   const { user, exitUser } = useAuth();
   const navigate = useNavigate();
-  // const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
 
   const handleExitUser = () => {
     exitUser()
@@ -61,14 +61,15 @@ const Navbar = () => {
               </div>
             </Bounce>
 
-            {user.role === 'admin' ?
+            {isAdmin ?
               <Link to='/dashboard/allusers'>
                 <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
               </Link>
               :
               <Link to='/dashboard/selectedclasses'>
                 <button className="btn btn-accent btn-outline btn-sm mx-2">Dashboard</button>
-              </Link>}
+              </Link>
+            }
             <button onClick={handleExitUser} className="btn btn-error btn-outline btn-sm">Logout</button>
           </div>
           :

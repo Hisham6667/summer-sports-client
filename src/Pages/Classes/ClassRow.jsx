@@ -2,12 +2,14 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const ClassRow = ({ singleclass }) => {
   const { _id, image, name, instructor_name, available_seats, price } = singleclass;
   const { user } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
 
   const handleSelect = () => {
     if (!user) {
@@ -52,8 +54,9 @@ const ClassRow = ({ singleclass }) => {
       <td className={available_seats === 0 ? 'text-red-500' : ''}>{available_seats} seats available</td>
       <td>${price}</td>
       <td>
-        <button onClick={handleSelect} disabled={available_seats === 0} className="btn btn-outline btn-accent">Select</button>
+        <button onClick={handleSelect} disabled={available_seats === 0 && isAdmin} className="btn btn-outline btn-accent">Select</button>
       </td>
+      
     </tr>
   );
 };
