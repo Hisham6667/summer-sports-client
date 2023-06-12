@@ -15,7 +15,6 @@ const DboardNav = () => {
         <ul className="menu menu-horizontal px-1 text-xl">
           <li><ActiveLink to='/dashboard/selectedclasses'>Selected Classes</ActiveLink></li>
           <li><ActiveLink to='/dashboard/enrolledclasses'>Enrolled Classes</ActiveLink></li>
-          <li><ActiveLink to='/dashboard/payment'>Payment</ActiveLink></li>
           <li><ActiveLink to='/dashboard/paymenthistory'>Payment History</ActiveLink></li>
         </ul>
       </div>
