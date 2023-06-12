@@ -42,43 +42,44 @@ const SelectedClasses = () => {
   return (
     <div className="overflow-x-auto ">
       <div className="p-8 rounded-xl border-y mt-10 mb-7  border-amber-800 flex justify-around">
-        <p className="text-4xl font-bold text-center font-serif uppercase">total {selectedClasses.length} classes has selected</p>
+        {selectedClasses.length !== 0 ? <><p className="text-4xl font-bold text-center font-serif uppercase">total {selectedClasses.length} classes has selected</p>
 
-        <div className="flex items-center">
-          <p className="text-xl mr-3">Course fees: ${total}</p>
-          <Link to='/dashboard/payment'>
-            <button className="btn btn-outline btn-accent">Buy this classes</button>
-          </Link>
-        </div>
+          <div className="flex items-center">
+            <p className="text-xl mr-3">Course fees: ${total}</p>
+            <Link to='/dashboard/payment'>
+              <button className="btn btn-outline btn-accent">Buy this classes</button>
+            </Link>
+          </div></> : <><p className="text-4xl font-bold text-center font-serif uppercase">no classes Added</p></>}
       </div>
 
-      <table className="table border mb-14 text-center">
+      {selectedClasses.length !== 0 &&
+        <table className="table border mb-14 text-center">
 
-        <thead>
-          <tr className="text-2xl">
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+          <thead>
+            <tr className="text-2xl">
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {
-            selectedClasses.map(selectedClass => <tr key={selectedClass._id} className="text-xl">
-              <td>
-                <img className="avatar w-14 h-14 mask mask-squircle" src={selectedClass.image} alt="classes picture" />
-              </td>
-              <td>{selectedClass.name}</td>
-              <td>${selectedClass.price}</td>
-              <td>
-                <button onClick={() => handleRemove(selectedClass._id)} className="btn btn-outline btn-error">Remove</button>
-              </td>
-            </tr>)
-          }
-        </tbody>
+          <tbody>
+            {
+              selectedClasses.map(selectedClass => <tr key={selectedClass._id} className="text-xl">
+                <td>
+                  <img className="avatar w-14 h-14 mask mask-squircle" src={selectedClass.image} alt="classes picture" />
+                </td>
+                <td>{selectedClass.name}</td>
+                <td>${selectedClass.price}</td>
+                <td>
+                  <button onClick={() => handleRemove(selectedClass._id)} className="btn btn-outline btn-error">Remove</button>
+                </td>
+              </tr>)
+            }
+          </tbody>
 
-      </table>
+        </table>}
     </div>
   );
 };
