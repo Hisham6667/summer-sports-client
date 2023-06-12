@@ -1,7 +1,6 @@
 import logo from '../../../assets/logo.png';
 import ActiveLink from '../../Shared/Navbar/ActiveLink';
 import { Bounce } from 'react-awesome-reveal';
-import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const DboardNav = () => {
